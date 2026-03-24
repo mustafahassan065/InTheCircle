@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InTheCircle | The Definitive Top 1% Mastermind & Premium University</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Cinzel', 'serif'],
+                        sans: ['Manrope', 'sans-serif'],
+                    },
+                    colors: {
+                        obsidian: '#030303',
+                        bone: '#F7F4EB',
+                        surface: '#0A0A0A',
+                        surfaceLight: '#141414',
+                        gold: '#C5A059',
+                        goldDim: '#8A703E',
+                        crimson: '#4A0404'
+                    },
+                    backgroundImage: {
+                        'noise': "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E\")",
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'mesh-pattern': "radial-gradient(at 40% 20%, rgba(197, 160, 89, 0.08) 0px, transparent 50%), radial-gradient(at 80% 0%, rgba(28, 28, 28, 1) 0px, transparent 50%), radial-gradient(at 0% 50%, rgba(10, 10, 10, 1) 0px, transparent 50%)"
+                    },
+                    animation: {
+                        'slow-spin': 'spin 25s linear infinite',
+                        'float': 'float 8s ease-in-out infinite',
+                        'reveal-up': 'revealUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'draw-line': 'drawLine 2s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        revealUp: {
+                            '0%': { opacity: 0, transform: 'translateY(50px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' },
+                        },
+                        drawLine: {
+                            '0%': { width: '0%' },
+                            '100%': { width: '100%' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #030303; color: #F7F4EB; overflow-x: hidden; }
+        
+        /* Premium Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #030303; }
+        ::-webkit-scrollbar-thumb { background: #141414; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #C5A059; }
+
+        /* Scroll Reveal Utility Classes */
+        .fade-in-section { opacity: 0; transform: translateY(60px); transition: opacity 1s ease-out, transform 1s cubic-bezier(0.16, 1, 0.3, 1); will-change: opacity, transform; }
+        .fade-in-section.is-visible { opacity: 1; transform: none; }
+        .fade-in-left { opacity: 0; transform: translateX(-60px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-in-left.is-visible { opacity: 1; transform: none; }
+        .fade-in-right { opacity: 0; transform: translateX(60px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-in-right.is-visible { opacity: 1; transform: none; }
+        
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        .delay-400 { transition-delay: 400ms; }
+
+        /* Image Parallax & Hover Containers */
+        .img-container { overflow: hidden; position: relative; }
+        .img-zoom { transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1); }
+        .img-container:hover .img-zoom { transform: scale(1.05); }
+
+        /* Mobile Menu Circular Expansion */
+        #mobile-menu {
+            clip-path: circle(0px at calc(100% - 48px) 48px);
+            transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        #mobile-menu.open {
+            clip-path: circle(250% at calc(100% - 48px) 48px);
+        }
+
+        /* Hamburger Animation */
+        .hamburger-line { transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1); transform-origin: center; }
+        .menu-open .line-1 { transform: translateY(8px) rotate(45deg); background-color: #030303; }
+        .menu-open .line-2 { opacity: 0; transform: translateX(20px); }
+        .menu-open .line-3 { transform: translateY(-8px) rotate(-45deg); background-color: #030303; }
+
+        /* Custom Text Highlights & Strokes */
+        .text-outline {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(247, 244, 235, 0.3);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .text-outline:hover {
+            color: #C5A059;
+            -webkit-text-stroke: 1px #C5A059;
+            text-shadow: 0 0 40px rgba(197, 160, 89, 0.4);
+        }
+
+        /* Numbered Lists Styling for Syllabus */
+        .syllabus-list { counter-reset: syllabus-counter; }
+        .syllabus-list li { position: relative; padding-left: 3.5rem; margin-bottom: 2rem; border-bottom: 1px solid rgba(247, 244, 235, 0.05); padding-bottom: 2rem; }
+        .syllabus-list li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .syllabus-list li::before {
+            counter-increment: syllabus-counter;
+            content: "0" counter(syllabus-counter);
+            position: absolute; left: 0; top: 0.1rem;
+            font-family: 'Cinzel', serif; font-weight: 700; color: #C5A059; font-size: 1.2rem; opacity: 0.6;
+        }
+
+        /* Glass Panels */
+        .glass-panel { background: rgba(20, 20, 20, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(197, 160, 89, 0.1); }
+        .glass-panel:hover { border-color: rgba(197, 160, 89, 0.4); box-shadow: 0 0 30px rgba(197, 160, 89, 0.05); }
+
+        /* Accordion */
+        .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease; opacity: 0; }
+        .faq-active .faq-content { max-height: 800px; opacity: 1; }
+        .faq-icon { transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .faq-active .faq-icon { transform: rotate(180deg); color: #C5A059; }
+
+        /* Complex Grid Layouts */
+        .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.5rem; }
+        
+        /* Subtle line draw effect for borders */
+        .draw-border { position: relative; }
+        .draw-border::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: #C5A059; transition: width 0.8s ease; }
+        .draw-border:hover::after { width: 100%; }
+    </style>
+</head>
+<body class="selection:bg-gold selection:text-obsidian relative">
+
+    <div class="fixed inset-0 bg-noise pointer-events-none z-[100]"></div>
+
+    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-500 py-6">
+        <div class="max-w-[100rem] mx-auto px-6 lg:px-12 flex justify-between items-center">
+            
+            <a href="#" class="flex items-center gap-5 group">
+                <div class="w-12 h-12 rounded-full border border-bone/10 flex items-center justify-center relative overflow-hidden group-hover:border-gold transition-colors duration-700">
+                    <div class="absolute inset-0 border-[3px] border-gold rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-slow-spin" style="border-top-color: transparent;"></div>
+                    <div class="w-2.5 h-2.5 bg-bone rounded-full group-hover:bg-gold transition-colors duration-500"></div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-display font-semibold text-2xl tracking-[0.25em] text-bone leading-none uppercase">InTheCircle</span>
+                </div>
+            </a>
+
+            <div class="hidden xl:flex items-center space-x-14">
+                <a href="#manifesto" class="font-sans text-[10px] font-bold text-bone/50 hover:text-gold uppercase tracking-[0.2em] transition-colors relative draw-border pb-1">The Philosophy</a>
+                <a href="#curriculum" class="font-sans text-[10px] font-bold text-bone/50 hover:text-gold uppercase tracking-[0.2em] transition-colors relative draw-border pb-1">Premium Syllabus</a>
+                <a href="#mastermind" class="font-sans text-[10px] font-bold text-bone/50 hover:text-gold uppercase tracking-[0.2em] transition-colors relative draw-border pb-1">Inner Circle Room</a>
+                <a href="#affiliate" class="font-sans text-[10px] font-bold text-bone/50 hover:text-gold uppercase tracking-[0.2em] transition-colors relative draw-border pb-1">Partner Ledger</a>
+                
+                <div class="h-8 w-px bg-bone/10"></div>
+                
+                <a href="https://whop.com/inthecircle/inthecircle?a=digitalartlab" class="group relative px-10 py-4 bg-bone text-obsidian overflow-hidden rounded-sm hover:shadow-[0_0_30px_rgba(197,160,89,0.2)] transition-shadow">
+                    <div class="absolute inset-0 w-0 bg-gold transition-all duration-500 ease-out group-hover:w-full"></div>
+                    <span class="relative z-10 font-sans font-bold text-[10px] uppercase tracking-[0.2em] group-hover:text-obsidian transition-colors">Apply For Access</span>
+                </a>
+            </div>
+
+            <button id="hamburger-btn" class="xl:hidden relative z-[60] w-14 h-14 flex flex-col items-center justify-center gap-[5px] focus:outline-none bg-bone rounded-full hover:scale-105 transition-transform shadow-2xl">
+                <span class="hamburger-line line-1 w-6 h-[2px] bg-obsidian block"></span>
+                <span class="hamburger-line line-2 w-6 h-[2px] bg-obsidian block"></span>
+                <span class="hamburger-line line-3 w-6 h-[2px] bg-obsidian block"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-bone z-[55] pt-32 px-8 pb-12 flex flex-col justify-between overflow-y-auto">
+        <div class="flex flex-col space-y-10 mt-12">
+            <div class="font-sans text-[10px] text-obsidian/40 uppercase tracking-[0.4em] border-b border-obsidian/10 pb-4">Architectural Directory</div>
+            
+            <a href="#manifesto" class="mobile-link group flex items-start gap-6">
+                <span class="font-display text-obsidian/20 text-3xl group-hover:text-gold transition-colors mt-2">I</span>
+                <div>
+                    <span class="block font-display text-5xl sm:text-7xl text-obsidian uppercase tracking-tight group-hover:text-gold transition-colors">Manifesto</span>
+                    <span class="block font-sans text-xs text-obsidian/50 mt-2 uppercase tracking-widest">The Foundation</span>
+                </div>
+            </a>
+            
+            <a href="#curriculum" class="mobile-link group flex items-start gap-6">
+                <span class="font-display text-obsidian/20 text-3xl group-hover:text-gold transition-colors mt-2">II</span>
+                <div>
+                    <span class="block font-display text-5xl sm:text-7xl text-obsidian uppercase tracking-tight group-hover:text-gold transition-colors">Syllabus</span>
+                    <span class="block font-sans text-xs text-obsidian/50 mt-2 uppercase tracking-widest">The Execution Blueprints</span>
+                </div>
+            </a>
+
+            <a href="#mastermind" class="mobile-link group flex items-start gap-6">
+                <span class="font-display text-obsidian/20 text-3xl group-hover:text-gold transition-colors mt-2">III</span>
+                <div>
+                    <span class="block font-display text-5xl sm:text-7xl text-obsidian uppercase tracking-tight group-hover:text-gold transition-colors">Network</span>
+                    <span class="block font-sans text-xs text-obsidian/50 mt-2 uppercase tracking-widest">The Inner Circle Room</span>
+                </div>
+            </a>
+            
+            <a href="#affiliate" class="mobile-link group flex items-start gap-6">
+                <span class="font-display text-obsidian/20 text-3xl group-hover:text-gold transition-colors mt-2">IV</span>
+                <div>
+                    <span class="block font-display text-5xl sm:text-7xl text-obsidian uppercase tracking-tight group-hover:text-gold transition-colors">Partnership</span>
+                    <span class="block font-sans text-xs text-obsidian/50 mt-2 uppercase tracking-widest">30% Revenue Share</span>
+                </div>
+            </a>
+
+            <a href="#pricing" class="mobile-link group flex items-start gap-6">
+                <span class="font-display text-obsidian/20 text-3xl group-hover:text-gold transition-colors mt-2">V</span>
+                <div>
+                    <span class="block font-display text-5xl sm:text-7xl text-obsidian uppercase tracking-tight group-hover:text-gold transition-colors">Enroll</span>
+                    <span class="block font-sans text-xs text-obsidian/50 mt-2 uppercase tracking-widest">Secure Your Position</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="mt-20">
+            <a href="https://whop.com/inthecircle/inthecircle?a=digitalartlab" class="mobile-link block w-full text-center py-6 bg-obsidian text-bone font-sans font-bold text-[12px] uppercase tracking-[0.3em] hover:bg-gold hover:text-obsidian transition-colors rounded-sm shadow-2xl">
+                Initialize Enrollment ($99/mo)
+            </a>
+        </div>
+    </div>
+
+    <section class="relative min-h-[110vh] flex items-center pt-40 pb-32 overflow-hidden bg-mesh-pattern">
+        <div class="absolute inset-0 z-0 flex justify-end">
+            <div class="w-full lg:w-[65%] h-full relative">
+                <img src="https://images.unsplash.com/photo-1577412647305-991150c7d163?auto=format&fit=crop&q=80" alt="Architecture" class="w-full h-full object-cover filter grayscale contrast-125 opacity-40 mix-blend-overlay">
+                <div class="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/80 to-transparent z-10"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent z-10"></div>
+            </div>
+            <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-[1000px] h-[1000px] bg-gold/5 rounded-full blur-[150px] z-10 pointer-events-none"></div>
+        </div>
+
+        <div class="max-w-[100rem] mx-auto px-6 lg:px-12 relative z-20 w-full flex flex-col lg:flex-row justify-between items-center lg:items-end gap-16">
+            
+            <div class="w-full lg:w-7/12 animate-reveal-up relative">
+                <div class="absolute -top-12 -left-6 w-12 h-12 border-t border-l border-gold/40"></div>
+                
+                <div class="flex items-center gap-6 mb-10">
+                    <div class="h-[1px] w-16 bg-gold"></div>
+                    <span class="font-sans text-[10px] text-gold uppercase tracking-[0.4em] font-bold">The Premium University</span>
+                </div>
+                
+                <h1 class="font-display text-6xl sm:text-8xl lg:text-[8rem] leading-[0.85] text-bone uppercase mb-12 tracking-tighter">
+                    The 99% <br>
+                    <span class="text-outline italic">Consume.</span><br>
+                    The 1% <span class="text-gold">Build.</span>
+                </h1>
+                
+                <div class="border-l border-gold/30 pl-8 mb-16">
+                    <p class="font-sans text-xl sm:text-2xl text-bone/70 font-light max-w-xl leading-relaxed">
+                        You are standing outside the room where the real decisions are made. InTheCircle is the definitive mastermind for entrepreneurs executing systems that scale.
+                    </p>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row items-center gap-8">
+                    <a href="https://whop.com/inthecircle/inthecircle?a=digitalartlab" class="group relative px-12 py-6 bg-gold text-obsidian rounded-sm overflow-hidden flex items-center gap-4 w-full sm:w-auto justify-center shadow-[0_0_40px_rgba(197,160,89,0.15)] hover:shadow-[0_0_60px_rgba(197,160,89,0.3)] transition-all">
+                        <span class="relative z-10 font-sans font-bold text-[12px] uppercase tracking-[0.2em]">Enter The Room — $99</span>
+                        <svg class="w-4 h-4 relative z-10 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        <div class="absolute inset-0 w-0 bg-bone transition-all duration-700 ease-out group-hover:w-full"></div>
+                    </a>
+                    
+                    <a href="#curriculum" class="flex items-center gap-4 group">
+                        <div class="w-12 h-12 rounded-full border border-bone/20 flex items-center justify-center group-hover:border-gold transition-colors">
+                            <svg class="w-4 h-4 text-bone group-hover:text-gold transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                        </div>
+                        <span class="font-sans font-bold text-[10px] text-bone/60 uppercase tracking-[0.2em] group-hover:text-gold transition-colors">View Syllabus</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="w-full lg:w-4/12 fade-in-section delay-200">
+                <div class="glass-panel p-10 md:p-12 relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-br from-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+                    <div class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-bone/20 group-hover:border-gold transition-colors duration-500"></div>
+                    <div class="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-bone/20 group-hover:border-gold transition-colors duration-500"></div>
+
+                    <div class="mb-12">
+                        <div class="font-sans text-[9px] text-bone/40 uppercase tracking-[0.3em] mb-3">Status Directive</div>
+                        <div class="flex items-center gap-4">
+                            <span class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.5)]"></span>
+                            <span class="font-display text-2xl text-bone uppercase tracking-widest">Enrollment Active</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-8 relative z-10">
+                        <div class="flex justify-between items-end border-b border-bone/10 pb-4 group-hover:border-gold/30 transition-colors">
+                            <span class="font-sans text-[10px] text-bone/50 uppercase tracking-[0.2em]">Monthly Access</span>
+                            <span class="font-display text-3xl text-gold">$99.00</span>
+                        </div>
+                        <div class="flex justify-between items-end border-b border-bone/10 pb-4 group-hover:border-gold/30 transition-colors">
+                            <span class="font-sans text-[10px] text-bone/50 uppercase tracking-[0.2em]">Partner Rev-Share</span>
+                            <span class="font-display text-3xl text-bone">30.00%</span>
+                        </div>
+                        <div class="flex justify-between items-end border-b border-bone/10 pb-4 group-hover:border-gold/30 transition-colors">
+                            <span class="font-sans text-[10px] text-bone/50 uppercase tracking-[0.2em]">Curriculum Depth</span>
+                            <span class="font-display text-3xl text-bone">Advanced</span>
+                        </div>
+                        <div class="flex justify-between items-end border-b border-bone/10 pb-4 group-hover:border-gold/30 transition-colors">
+                            <span class="font-sans text-[10px] text-bone/50 uppercase tracking-[0.2em]">Network Exclusivity</span>
+                            <span class="font-display text-3xl text-bone">Global Top 1%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="absolute bottom-0 w-full border-t border-bone/10 bg-obsidian py-4 overflow-hidden flex z-30">
+            <div class="animate-[marquee_30s_linear_infinite] whitespace-nowrap flex items-center font-sans font-bold text-[10px] text-bone/30 uppercase tracking-[0.3em]">
+                <span class="mx-8">PRODUCTIZED SERVICES</span><span class="mx-8 text-gold">•</span>
+                <span class="mx-8">AI AGENT INFRASTRUCTURE</span><span class="mx-8 text-gold">•</span>
+                <span class="mx-8">GLOBAL E-COMMERCE</span><span class="mx-8 text-gold">•</span>
+                <span class="mx-8">B2B CLIENT ACQUISITION</span><span class="mx-8 text-gold">•</span>
+                <span class="mx-8">NICHE WEB DEVELOPMENT</span><span class="mx-8 text-gold">•</span>
+                <span class="mx-8">INNER CIRCLE MASTERMIND</span><span class="mx-8 text-gold">•</span>
+            </div>
+            <div class="animate-[marquee2_30s_linear_infinite] whitespace-nowrap flex items-center font-sans font-bold text-[10px] text-bone/30 uppercase tracking-[0.3em] absolute top-4 left-full">
+                <span class="mx-8">PRODUCTIZED SERVICES</span><span class="mx-8 text-gold">•</span>
+                <span class="mx-8">AI AGENT INFRASTRUCTURE</span><span class="mx-8 text-gold">•</span>
+                <span class="mx-8">GLOBAL E-COMMERCE</span><span class="mx-8 text-gold">•</span>
+                <span class="mx-8">B2B CLIENT ACQUISITION</span><span class="mx-8 text-gold">•</span>
+                <span class="mx-8">NICHE WEB DEVELOPMENT</span><span class="mx-8 text-gold">•</span>
+                <span class="mx-8">INNER CIRCLE MASTERMIND</span><span class="mx-8 text-gold">•</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="manifesto" class="py-32 lg:py-48 bg-surface relative">
+        <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-radial from-surfaceLight to-transparent opacity-50 pointer-events-none"></div>
+
+        <div class="max-w-[100rem] mx-auto px-6 lg:px-12 relative z-10">
+            
+            <div class="grid lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+                
+                <div class="lg:col-span-7 fade-in-left">
+                    <span class="font-sans text-[10px] text-gold uppercase tracking-[0.3em] font-bold mb-8 block">01 — The Mastermind Philosophy</span>
+                    <h2 class="font-display text-5xl sm:text-6xl lg:text-7xl text-bone leading-[1.05] uppercase mb-12">
+                        Isolation is the <br> enemy of scale.
+                    </h2>
+                    
+                    <div class="prose prose-invert prose-lg md:prose-xl font-sans font-light text-bone/60 leading-relaxed max-w-none">
+                        <p class="mb-8">The conventional path teaches you to work quietly, consume endless free content on YouTube, and hope for a breakthrough. That is the blueprint for mediocrity and burnout. Information is no longer a competitive advantage; execution and proximity are.</p>
+                        
+                        <p class="mb-8">The <strong class="text-bone font-medium">Top 1%</strong> operate differently. They do not guess; they execute proven, battle-tested frameworks. They do not build alone; they leverage the network, the scripts, and the insights of those who have already scaled to 7 and 8 figures.</p>
+                        
+                        <div class="my-14 border-l-2 border-gold pl-8 py-2 bg-gradient-to-r from-gold/5 to-transparent">
+                            <p class="font-display text-2xl md:text-3xl text-bone leading-snug m-0 italic">
+                                "InTheCircle is not just a university. It is an uncompromised ecosystem designed specifically for serious operators."
+                            </p>
+                        </div>
+
+                        <p>We are building the definitive infrastructure for modern entrepreneurs. Whether you are engineering custom AI agents for B2B logistics, structuring a high-ticket productized service, or importing e-commerce goods from overseas, the blueprints exist inside this room.</p>
+                    </div>
+
+                    <div class="mt-16 pt-16 border-t border-bone/10 grid grid-cols-2 md:grid-cols-4 gap-8">
+                        <div>
+                            <div class="font-display text-4xl text-bone mb-2">2,400+</div>
+                            <div class="font-sans text-[9px] text-bone/40 uppercase tracking-[0.2em]">Active Members</div>
+                        </div>
+                        <div>
+                            <div class="font-display text-4xl text-bone mb-2">$15M+</div>
+                            <div class="font-sans text-[9px] text-bone/40 uppercase tracking-[0.2em]">Network Revenue</div>
+                        </div>
+                        <div>
+                            <div class="font-display text-4xl text-bone mb-2">5+</div>
+                            <div class="font-sans text-[9px] text-bone/40 uppercase tracking-[0.2em]">Core Blueprints</div>
+                        </div>
+                        <div>
+                            <div class="font-display text-4xl text-gold mb-2">30%</div>
+                            <div class="font-sans text-[9px] text-gold uppercase tracking-[0.2em]">Partner Payouts</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 relative fade-in-right delay-200">
+                    <div class="aspect-[3/4] img-container rounded-sm relative z-10 border border-bone/10 p-3 bg-obsidian">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80" alt="Executive Boardroom" class="w-full h-full object-cover filter grayscale contrast-[1.15] img-zoom">
+                        <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent"></div>
+                        
+                        <div class="absolute bottom-10 -left-10 w-64 glass-panel p-6 shadow-2xl hidden md:block">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-10 h-10 rounded-full bg-surfaceLight border border-bone/20 flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                                </div>
+                                <div>
+                                    <div class="font-display text-sm text-bone">Vetted Access</div>
+                                    <div class="font-sans text-[9px] text-bone/50 uppercase tracking-widest">High Signal Environment</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute -top-16 -right-16 w-64 h-64 border border-gold/20 rounded-full animate-slow-spin z-0 flex items-center justify-center pointer-events-none hidden lg:flex">
+                        <div class="w-48 h-48 border border-gold/10 rounded-full"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="curriculum" class="py-32 lg:py-48 bg-obsidian relative border-t border-bone/5">
+        <div class="max-w-[100rem] mx-auto px-6 lg:px-12">
+            
+            <div class="flex flex-col md:flex-row justify-between items-end mb-24 fade-in-section">
+                <div class="max-w-4xl">
+                    <span class="font-sans text-[10px] text-gold uppercase tracking-[0.3em] font-bold mb-8 block">02 — The Premium University</span>
+                    <h2 class="font-display text-5xl md:text-7xl lg:text-[5rem] text-bone leading-[1] uppercase">
+                        The Architecture <br> of <span class="text-gold">Scale.</span>
+                    </h2>
+                </div>
+                <div class="mt-8 md:mt-0 max-w-sm">
+                    <p class="font-sans text-sm text-bone/50 font-light leading-relaxed border-l border-gold/30 pl-6">
+                        Access the exact comprehensive blueprints used by 7-figure operators. No abstract theory. Only actionable, battle-tested execution models designed for aggressive growth.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bento-grid">
+                
+                <div class="col-span-12 lg:col-span-8 bg-surface border border-bone/10 p-10 md:p-16 hover:border-gold/40 transition-colors group fade-in-section">
+                    <div class="flex justify-between items-start mb-10">
+                        <div class="font-display text-6xl text-bone/5 group-hover:text-gold/20 transition-colors">I</div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 bg-surfaceLight border border-bone/10 rounded-sm">
+                            <span class="font-sans text-[9px] text-bone/60 uppercase tracking-widest">Advanced Tech</span>
+                        </div>
+                    </div>
+                    <h3 class="font-display text-3xl md:text-4xl text-bone uppercase mb-6">AI Agent Infrastructure</h3>
+                    <p class="font-sans text-base text-bone/60 leading-relaxed mb-10 max-w-2xl">
+                        Leverage the Top 1% mindset by building bespoke AI-powered tools. We teach you how to engineer custom LLM wrappers and deploy AI agents to solve specific B2B problems—like automating freight audits, legal document review, or enterprise customer service.
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <ul class="syllabus-list">
+                            <li>
+                                <strong class="block font-display text-lg text-bone mb-2">Prompt Engineering & LLMs</strong>
+                                <span class="block font-sans text-xs text-bone/50 leading-relaxed">Mastering context windows, API integrations (OpenAI, Anthropic), and designing system architectures.</span>
+                            </li>
+                            <li>
+                                <strong class="block font-display text-lg text-bone mb-2">Agentic Workflows</strong>
+                                <span class="block font-sans text-xs text-bone/50 leading-relaxed">Building multi-agent systems that autonomously handle complex, multi-step business logic and data processing.</span>
+                            </li>
+                        </ul>
+                        <ul class="syllabus-list">
+                            <li>
+                                <strong class="block font-display text-lg text-bone mb-2">B2B SaaS Deployment</strong>
+                                <span class="block font-sans text-xs text-bone/50 leading-relaxed">Wrapping your AI logic into sellable software products. Managing user authentication, databases, and stripe billing.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-span-12 lg:col-span-4 bg-surface border border-bone/10 p-10 md:p-16 hover:border-gold/40 transition-colors group fade-in-section delay-100 flex flex-col justify-between">
+                    <div>
+                        <div class="font-display text-6xl text-bone/5 group-hover:text-gold/20 transition-colors mb-10">II</div>
+                        <h3 class="font-display text-2xl md:text-3xl text-bone uppercase mb-6">Niche Domination</h3>
+                        <p class="font-sans text-sm text-bone/60 leading-relaxed mb-10">
+                            Stop being a generalist web developer. Learn the framework to target highly lucrative verticals.
+                        </p>
+                        <ul class="syllabus-list">
+                            <li>
+                                <strong class="block font-display text-base text-bone mb-1">Vertical Targeting</strong>
+                                <span class="block font-sans text-[11px] text-bone/50 leading-relaxed">Building specifically for high-ticket clients (e.g., premium fitness coaches, personal trainers, medical spas).</span>
+                            </li>
+                            <li>
+                                <strong class="block font-display text-base text-bone mb-1">Value-Based Pricing</strong>
+                                <span class="block font-sans text-[11px] text-bone/50 leading-relaxed">Transitioning from hourly rates to charging $5k+ for outcome-based digital assets.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-span-12 lg:col-span-4 bg-surface border border-bone/10 p-10 md:p-16 hover:border-gold/40 transition-colors group fade-in-section">
+                    <div class="font-display text-6xl text-bone/5 group-hover:text-gold/20 transition-colors mb-10">III</div>
+                    <h3 class="font-display text-2xl md:text-3xl text-bone uppercase mb-6">Productized Services</h3>
+                    <p class="font-sans text-sm text-bone/60 leading-relaxed mb-10">
+                        Package your high-level skills into a scalable, subscription-based agency model that runs without your daily involvement.
+                    </p>
+                    <ul class="syllabus-list">
+                        <li>
+                            <strong class="block font-display text-base text-bone mb-1">Offer Structuring</strong>
+                            <span class="block font-sans text-[11px] text-bone/50 leading-relaxed">Defining a singular, irresistible offer that can be systematized and delegated.</span>
+                        </li>
+                        <li>
+                            <strong class="block font-display text-base text-bone mb-1">Async Fulfillment</strong>
+                            <span class="block font-sans text-[11px] text-bone/50 leading-relaxed">Eliminating meetings. Using platforms like Trello or Notion to handle client requests asynchronously.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-span-12 lg:col-span-4 bg-surface border border-bone/10 p-10 md:p-16 hover:border-gold/40 transition-colors group fade-in-section delay-100">
+                    <div class="font-display text-6xl text-bone/5 group-hover:text-gold/20 transition-colors mb-10">IV</div>
+                    <h3 class="font-display text-2xl md:text-3xl text-bone uppercase mb-6">Global E-Commerce</h3>
+                    <p class="font-sans text-sm text-bone/60 leading-relaxed mb-10">
+                        Master the physical product supply chain. Building brands like 'Eternal Loop' from the ground up with high margins.
+                    </p>
+                    <ul class="syllabus-list">
+                        <li>
+                            <strong class="block font-display text-base text-bone mb-1">Overseas Importing</strong>
+                            <span class="block font-sans text-[11px] text-bone/50 leading-relaxed">Negotiating with suppliers in China, quality control, and managing complex freight logistics.</span>
+                        </li>
+                        <li>
+                            <strong class="block font-display text-base text-bone mb-1">Brand Positioning</strong>
+                            <span class="block font-sans text-[11px] text-bone/50 leading-relaxed">Creating premium aesthetics for female personal care niches or high-end apparel to command higher ROAS.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-span-12 lg:col-span-4 bg-gradient-to-br from-surfaceLight to-obsidian border border-gold/20 p-10 md:p-16 hover:border-gold transition-colors group fade-in-section delay-200 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="relative z-10">
+                        <div class="font-display text-6xl text-gold/10 group-hover:text-gold/30 transition-colors mb-10">V</div>
+                        <h3 class="font-display text-2xl md:text-3xl text-bone uppercase mb-6">The 1% Sales Engine</h3>
+                        <p class="font-sans text-sm text-bone/60 leading-relaxed mb-10">
+                            The best product dies without distribution. Access the exact cold outreach scripts and closing frameworks used to acquire high-ticket B2B clients globally.
+                        </p>
+                        <a href="#pricing" class="inline-flex items-center justify-center w-full py-4 border border-gold text-gold font-sans font-bold text-[11px] uppercase tracking-widest hover:bg-gold hover:text-obsidian transition-colors rounded-sm mt-auto">
+                            Access All Blueprints
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="mastermind" class="py-32 bg-surfaceLight border-y border-bone/5 relative overflow-hidden">
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-full bg-[url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-10 filter grayscale mix-blend-screen pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-surfaceLight via-surfaceLight/90 to-transparent z-0"></div>
+
+        <div class="max-w-[100rem] mx-auto px-6 lg:px-12 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                
+                <div class="fade-in-section">
+                    <span class="font-sans text-[10px] text-gold uppercase tracking-[0.3em] font-bold mb-6 block">03 — The Network</span>
+                    <h2 class="font-display text-5xl md:text-6xl text-bone leading-[1.1] uppercase mb-8">
+                        Proximity is <br> Power.
+                    </h2>
+                    <p class="font-sans text-lg text-bone/60 font-light leading-relaxed mb-10">
+                        Education is merely the baseline. The true, asymmetrical advantage of InTheCircle is the environment. When you place yourself in a room where the average member is scaling a software company, running a massive e-com operation, or automating entire industries, your baseline of what is possible fundamentally shifts.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-5 glass-panel p-6">
+                            <div class="w-12 h-12 shrink-0 bg-obsidian border border-gold/30 flex items-center justify-center rounded-sm">
+                                <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-display text-lg text-bone uppercase mb-1">The War Room (Discord)</h4>
+                                <p class="font-sans text-sm text-bone/50 leading-relaxed">24/7 access to specialized channels. From code review for your Python/React stacks to dissecting Facebook ad creatives. Real-time feedback from operators.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-5 glass-panel p-6">
+                            <div class="w-12 h-12 shrink-0 bg-obsidian border border-gold/30 flex items-center justify-center rounded-sm">
+                                <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-display text-lg text-bone uppercase mb-1">Weekly Live Interrogations</h4>
+                                <p class="font-sans text-sm text-bone/50 leading-relaxed">Join live hot-seat calls where we tear down your business models. We identify bottlenecks in your offer, sales scripts, or tech stack and provide immediate fixes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-in-right delay-200">
+                    <div class="bg-obsidian border border-bone/10 p-10">
+                        <div class="font-sans text-[10px] text-bone/40 uppercase tracking-[0.3em] mb-8 text-center border-b border-bone/10 pb-4">Notable Alumni Success Vectors</div>
+                        
+                        <div class="space-y-8">
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <div class="font-display text-lg text-bone">Project: "AI FactCheck" to Enterprise B2B</div>
+                                    <div class="font-sans text-xs text-gold">Scaled to $30k/mo</div>
+                                </div>
+                                <p class="font-sans text-sm text-bone/50 font-light leading-relaxed">Member transformed a university-level AI verification project into a fully fledged B2B productized service, auditing logistics and news authenticity for corporate clients.</p>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <div class="font-display text-lg text-bone">Eternal Loop E-Commerce</div>
+                                    <div class="font-sans text-xs text-gold">High Margin Import</div>
+                                </div>
+                                <p class="font-sans text-sm text-bone/50 font-light leading-relaxed">Utilized the overseas sourcing blueprints to import female personal care products from China, establishing a dominant brand presence and highly profitable supply chain.</p>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <div class="font-display text-lg text-bone">Coach Steele & MKF Online</div>
+                                    <div class="font-sans text-xs text-gold">Niche Web Dev Agency</div>
+                                </div>
+                                <p class="font-sans text-sm text-bone/50 font-light leading-relaxed">Pivoted from generalist web development to exclusively servicing elite fitness coaches. Increased average retainer size by 400% using our value-based pricing models.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="affiliate" class="py-32 lg:py-48 bg-obsidian relative border-t border-bone/5">
+        <div class="max-w-[100rem] mx-auto px-6 lg:px-12">
+            
+            <div class="grid lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+                
+                <div class="lg:col-span-5 fade-in-section">
+                    <span class="font-sans text-[10px] text-gold uppercase tracking-[0.3em] font-bold mb-6 block">04 — Partner Ledger</span>
+                    
+                    <div class="relative">
+                        <div class="font-display text-[10rem] sm:text-[14rem] leading-none text-bone/5 tracking-tighter absolute -top-10 -left-10 pointer-events-none">30%</div>
+                        <h2 class="font-display text-5xl md:text-6xl text-bone uppercase mb-8 relative z-10 leading-[1.1]">
+                            Create A Self-Funding <br> <span class="text-gold">Asset.</span>
+                        </h2>
+                    </div>
+                    
+                    <p class="font-sans text-lg text-bone/60 font-light leading-relaxed mb-10 relative z-10">
+                        The elite do not view access as an expense; they view it as a lever. InTheCircle offers an exclusive partnership program designed to reward those who elevate the network. 
+                    </p>
+                    
+                    <div class="space-y-5 font-sans text-sm text-bone/70 relative z-10">
+                        <div class="flex items-center justify-between border-b border-bone/10 pb-4">
+                            <span class="uppercase tracking-widest text-xs">Standard Commission</span>
+                            <span class="font-display text-xl text-gold">30.00%</span>
+                        </div>
+                        <div class="flex items-center justify-between border-b border-bone/10 pb-4">
+                            <span class="uppercase tracking-widest text-xs">Payout Frequency</span>
+                            <span class="font-display text-lg text-bone">Automatic (Whop)</span>
+                        </div>
+                        <div class="flex items-center justify-between border-b border-bone/10 pb-4">
+                            <span class="uppercase tracking-widest text-xs">Duration</span>
+                            <span class="font-display text-lg text-bone">Lifetime Recurring</span>
+                        </div>
+                    </div>
+
+                    <p class="font-sans text-xs text-bone/40 italic mt-8">
+                        * Refer exactly 4 visionary operators to the university, and your own monthly membership becomes completely mathematically free. Every referral beyond that generates pure passive cash flow.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-7 relative fade-in-right delay-200">
+                    <div class="bg-surface border border-bone/10 p-10 md:p-16 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-gold/5 blur-[80px]"></div>
+                        
+                        <div class="font-display text-2xl text-bone uppercase mb-10 text-center">Projection Matrix</div>
+                        
+                        <div class="space-y-6">
+                            <div class="glass-panel p-6 flex justify-between items-center">
+                                <div>
+                                    <div class="font-sans text-[10px] text-bone/50 uppercase tracking-[0.2em] mb-1">Active Referrals</div>
+                                    <div class="font-display text-3xl text-bone">5 Members</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-sans text-[10px] text-bone/50 uppercase tracking-[0.2em] mb-1">Monthly Yield</div>
+                                    <div class="font-display text-3xl text-gold">+$148.50</div>
+                                </div>
+                            </div>
+
+                            <div class="glass-panel p-6 flex justify-between items-center">
+                                <div>
+                                    <div class="font-sans text-[10px] text-bone/50 uppercase tracking-[0.2em] mb-1">Active Referrals</div>
+                                    <div class="font-display text-3xl text-bone">20 Members</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-sans text-[10px] text-bone/50 uppercase tracking-[0.2em] mb-1">Monthly Yield</div>
+                                    <div class="font-display text-3xl text-gold">+$594.00</div>
+                                </div>
+                            </div>
+
+                            <div class="glass-panel p-6 flex justify-between items-center border-gold/30">
+                                <div>
+                                    <div class="font-sans text-[10px] text-bone/50 uppercase tracking-[0.2em] mb-1">Active Referrals</div>
+                                    <div class="font-display text-3xl text-bone">50 Members</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-sans text-[10px] text-bone/50 uppercase tracking-[0.2em] mb-1">Monthly Yield</div>
+                                    <div class="font-display text-3xl text-gold">+$1,485.00</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-12 text-center">
+                            <a href="https://whop.com/inthecircle?a=digitalartlab" class="inline-block border-b border-gold text-gold font-sans text-xs uppercase tracking-widest pb-1 hover:text-bone hover:border-bone transition-colors">
+                                Generate Partnership Link via Whop Dashboard
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-32 lg:py-48 bg-surfaceLight relative overflow-hidden border-t border-bone/5">
+        <div class="absolute inset-0 bg-gradient-radial from-gold/5 via-transparent to-transparent opacity-60 pointer-events-none"></div>
+        
+        <div class="max-w-6xl mx-auto px-6 lg:px-12 relative z-10">
+            <div class="text-center mb-20 fade-in-section">
+                <span class="font-sans text-[10px] text-gold uppercase tracking-[0.3em] font-bold mb-6 block">05 — Final Directive</span>
+                <h2 class="font-display text-5xl md:text-7xl text-bone leading-[1.1] uppercase mb-8">
+                    Step Into <br> <span class="text-outline">The Circle.</span>
+                </h2>
+                <p class="font-sans text-lg text-bone/50 font-light max-w-2xl mx-auto">
+                    A single insight from this ecosystem can redefine your entire business trajectory. The barrier to entry is kept deliberate to ensure the utmost quality of the network.
+                </p>
+            </div>
+
+            <div class="glass-panel border-t-2 border-gold p-1 sm:p-2 fade-in-section delay-100 max-w-4xl mx-auto shadow-2xl relative">
+                <div class="absolute -inset-2 border border-gold/10 pointer-events-none hidden md:block"></div>
+
+                <div class="bg-obsidian border border-bone/5 p-10 md:p-16 relative overflow-hidden">
+                    
+                    <div class="absolute top-0 right-0 bg-gold text-obsidian px-6 py-2 font-sans font-bold text-[10px] uppercase tracking-[0.3em] shadow-lg">
+                        All Access Pass
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                        <div class="text-center md:text-left relative z-10">
+                            <h3 class="font-display text-4xl text-bone uppercase mb-4">Premium University</h3>
+                            <p class="font-sans text-sm text-bone/50 mb-10 leading-relaxed">Includes lifetime updates to the curriculum, immediate Discord access, and live mastermind calls.</p>
+                            
+                            <div class="flex items-baseline justify-center md:justify-start gap-2 mb-4">
+                                <span class="font-display text-7xl text-gold">$99</span>
+                                <span class="font-sans text-xl text-bone/40 font-light">.00</span>
+                            </div>
+                            <div class="font-sans text-[11px] text-bone/40 uppercase tracking-[0.2em] mb-12">Billed Monthly • Cancel Anytime</div>
+                            
+                            <a href="https://whop.com/inthecircle/inthecircle?a=digitalartlab" class="block w-full py-5 bg-bone text-obsidian text-center font-sans font-bold text-[12px] uppercase tracking-[0.3em] hover:bg-gold transition-colors rounded-sm shadow-[0_0_20px_rgba(247,244,235,0.1)] hover:shadow-[0_0_30px_rgba(197,160,89,0.3)]">
+                                Initialize Enrollment
+                            </a>
+                            
+                            <div class="mt-6 flex justify-center md:justify-start items-center gap-4 font-sans text-[9px] text-bone/30 uppercase tracking-widest">
+                                <span class="flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg> Secure Whop Checkout</span>
+                                <span>•</span>
+                                <span>Instant Access</span>
+                            </div>
+                        </div>
+                        
+                        <div class="relative">
+                            <div class="hidden md:block absolute -left-8 top-0 bottom-0 w-px bg-bone/10"></div>
+                            
+                            <h4 class="font-display text-lg text-bone uppercase mb-6 border-b border-bone/10 pb-4">Ecosystem Architecture:</h4>
+                            
+                            <ul class="space-y-5 font-sans text-sm text-bone/70">
+                                <li class="flex items-start gap-4">
+                                    <svg class="w-5 h-5 text-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                    <div>
+                                        <strong class="block text-bone font-medium mb-1">Complete Blueprint Vault</strong>
+                                        <span class="text-xs text-bone/50">Productized services, AI tools, E-com logistics.</span>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <svg class="w-5 h-5 text-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                    <div>
+                                        <strong class="block text-bone font-medium mb-1">The 1% Sales Engine</strong>
+                                        <span class="text-xs text-bone/50">Cold outreach scripts and closing frameworks.</span>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <svg class="w-5 h-5 text-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                    <div>
+                                        <strong class="block text-bone font-medium mb-1">Inner Circle Mastermind</strong>
+                                        <span class="text-xs text-bone/50">24/7 Discord access to vetted operators.</span>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <svg class="w-5 h-5 text-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                    <div>
+                                        <strong class="block text-bone font-medium mb-1">Live Interrogations</strong>
+                                        <span class="text-xs text-bone/50">Weekly hot-seat business teardowns.</span>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-4 mt-6 pt-6 border-t border-bone/10">
+                                    <span class="w-5 h-5 rounded-sm bg-gold/10 border border-gold flex items-center justify-center shrink-0 mt-0.5">
+                                        <div class="w-2 h-2 bg-gold rounded-full animate-pulse"></div>
+                                    </span>
+                                    <div>
+                                        <strong class="block text-gold font-bold mb-1">30.00% Partner Status</strong>
+                                        <span class="text-xs text-bone/50">Generate recurring revenue immediately.</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="py-32 bg-obsidian relative border-t border-bone/5">
+        <div class="max-w-4xl mx-auto px-6 lg:px-12">
+            <div class="mb-20 fade-in-section text-center">
+                <span class="font-sans text-[10px] text-gold uppercase tracking-[0.3em] font-bold mb-4 block">Knowledge Base</span>
+                <h2 class="font-display text-4xl md:text-5xl text-bone uppercase mb-6">Formal Inquiries.</h2>
+                <div class="w-16 h-px bg-gold mx-auto"></div>
+            </div>
+
+            <div class="space-y-2 fade-in-section delay-100">
+                
+                <div class="border-b border-bone/10 faq-item">
+                    <button class="w-full py-8 text-left flex justify-between items-center focus:outline-none group" onclick="toggleFaq(this)">
+                        <span class="font-display text-bone text-lg md:text-xl uppercase tracking-wide group-hover:text-gold transition-colors pr-8">Is this suitable for absolute beginners?</span>
+                        <svg class="w-6 h-6 text-bone/30 faq-icon group-hover:text-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" d="M12 4v16m8-8H4"></path></svg>
+                    </button>
+                    <div class="faq-content">
+                        <p class="font-sans font-light text-bone/60 text-base pb-10 leading-relaxed max-w-3xl">
+                            Yes. While the concepts we teach (Top 1% execution, AI wrappers, advanced e-com supply chains) are highly sophisticated, the curriculum breaks them down into step-by-step, actionable blueprints. You do not need prior technical or business experience, just an unyielding discipline to execute the frameworks provided.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border-b border-bone/10 faq-item">
+                    <button class="w-full py-8 text-left flex justify-between items-center focus:outline-none group" onclick="toggleFaq(this)">
+                        <span class="font-display text-bone text-lg md:text-xl uppercase tracking-wide group-hover:text-gold transition-colors pr-8">I already have an agency. Will this help me scale?</span>
+                        <svg class="w-6 h-6 text-bone/30 faq-icon group-hover:text-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" d="M12 4v16m8-8H4"></path></svg>
+                    </button>
+                    <div class="faq-content">
+                        <p class="font-sans font-light text-bone/60 text-base pb-10 leading-relaxed max-w-3xl">
+                            Precisely. If you are stuck at $10k-$20k/mo, you have an operational bottleneck. Module III (Productized Services) and Module V (The 1% Sales Engine) are engineered to help you transition from a bespoke, time-heavy agency model to a productized, highly delegated system that scales to 7-figures without consuming your time.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border-b border-bone/10 faq-item">
+                    <button class="w-full py-8 text-left flex justify-between items-center focus:outline-none group" onclick="toggleFaq(this)">
+                        <span class="font-display text-bone text-lg md:text-xl uppercase tracking-wide group-hover:text-gold transition-colors pr-8">How is the curriculum delivered?</span>
+                        <svg class="w-6 h-6 text-bone/30 faq-icon group-hover:text-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" d="M12 4v16m8-8H4"></path></svg>
+                    </button>
+                    <div class="faq-content">
+                        <p class="font-sans font-light text-bone/60 text-base pb-10 leading-relaxed max-w-3xl">
+                            Upon securing your enrollment via Whop, you are instantly granted access to our private Discord server (The War Room) and the Premium University web portal. All video modules, text resources, standard operating procedures (SOPs), and live call recordings are hosted there securely.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border-b border-bone/10 faq-item">
+                    <button class="w-full py-8 text-left flex justify-between items-center focus:outline-none group" onclick="toggleFaq(this)">
+                        <span class="font-display text-bone text-lg md:text-xl uppercase tracking-wide group-hover:text-gold transition-colors pr-8">How do I access the 30% affiliate program?</span>
+                        <svg class="w-6 h-6 text-bone/30 faq-icon group-hover:text-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" d="M12 4v16m8-8H4"></path></svg>
+                    </button>
+                    <div class="faq-content">
+                        <p class="font-sans font-light text-bone/60 text-base pb-10 leading-relaxed max-w-3xl">
+                            Every active member automatically qualifies for the partnership program. Inside your Whop user dashboard, navigate to the 'Affiliate' section to generate your unique tracking link. Payouts are 30% recurring for the lifetime of the referred member's subscription, handled automatically by Whop's infrastructure.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border-b border-bone/10 faq-item">
+                    <button class="w-full py-8 text-left flex justify-between items-center focus:outline-none group" onclick="toggleFaq(this)">
+                        <span class="font-display text-bone text-lg md:text-xl uppercase tracking-wide group-hover:text-gold transition-colors pr-8">Am I locked into a long-term contract?</span>
+                        <svg class="w-6 h-6 text-bone/30 faq-icon group-hover:text-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" d="M12 4v16m8-8H4"></path></svg>
+                    </button>
+                    <div class="faq-content">
+                        <p class="font-sans font-light text-bone/60 text-base pb-10 leading-relaxed max-w-3xl">
+                            Absolutely not. We do not believe in holding operators hostage. Your membership is billed month-to-month. You manage your subscription directly through Whop, giving you full autonomy to cancel, pause, or update your billing details with a single click at any moment.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-obsidian border-t border-bone/10 pt-32 pb-12 relative overflow-hidden">
+        
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[22vw] text-bone/[0.015] font-black uppercase pointer-events-none tracking-tighter w-full text-center z-0">
+            CIRCLE
+        </div>
+
+        <div class="max-w-[100rem] mx-auto px-6 lg:px-12 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 lg:gap-8 mb-32">
+                
+                <div class="lg:col-span-5 pr-0 lg:pr-12">
+                    <a href="#" class="flex items-center gap-5 mb-10">
+                        <div class="w-12 h-12 rounded-full border border-gold flex items-center justify-center">
+                            <div class="w-2.5 h-2.5 bg-gold rounded-full"></div>
+                        </div>
+                        <span class="font-display font-semibold text-3xl tracking-[0.2em] text-bone uppercase">InTheCircle</span>
+                    </a>
+                    <p class="font-sans text-bone/50 text-base font-light leading-relaxed mb-10">
+                        The definitive mastermind for the top 1%. We provide the frameworks, the elite network, and the uncompromising environment required to scale productized services, e-commerce brands, and AI infrastructure globally.
+                    </p>
+                    <a href="https://whop.com/inthecircle?a=digitalartlab" class="inline-flex items-center gap-3 font-sans text-[11px] text-bone hover:text-gold uppercase tracking-[0.2em] transition-colors pb-2 border-b border-bone/20 hover:border-gold">
+                        View Official Whop Company Profile
+                    </a>
+                </div>
+
+                <div class="lg:col-span-2 lg:col-start-7">
+                    <h4 class="font-sans text-[11px] text-gold uppercase tracking-[0.3em] font-bold mb-8">Architecture</h4>
+                    <ul class="space-y-5 font-sans text-xs text-bone/60 uppercase tracking-widest">
+                        <li><a href="#manifesto" class="hover:text-bone transition-colors block">The Manifesto</a></li>
+                        <li><a href="#curriculum" class="hover:text-bone transition-colors block">The Syllabus</a></li>
+                        <li><a href="#mastermind" class="hover:text-bone transition-colors block">Inner Circle</a></li>
+                        <li><a href="#affiliate" class="hover:text-bone transition-colors block">Partnership Ledger</a></li>
+                        <li><a href="#pricing" class="hover:text-bone transition-colors block">Enrollment Portal</a></li>
+                    </ul>
+                </div>
+
+                <div class="lg:col-span-3">
+                    <h4 class="font-sans text-[11px] text-gold uppercase tracking-[0.3em] font-bold mb-8">Platform Nodes</h4>
+                    <ul class="space-y-5 font-sans text-xs text-bone/60 uppercase tracking-widest">
+                        <li><a href="https://whop.com/inthecircle/inthecircle?a=digitalartlab" class="hover:text-bone transition-colors flex items-center gap-2"><svg class="w-3 h-3 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg> Secure Checkout</a></li>
+                        <li><a href="#" class="hover:text-bone transition-colors text-gold font-bold flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gold rounded-full"></span> Generate 30% Link</a></li>
+                        <li><a href="#" class="hover:text-bone transition-colors block">Member Dashboard</a></li>
+                        <li><a href="#" class="hover:text-bone transition-colors block">Priority Support</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="border-t border-bone/10 pt-10 flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="font-sans text-[10px] text-bone/40 uppercase tracking-[0.3em]">
+                    &copy; 2026 InTheCircle Mastermind. All Rights Reserved.
+                </div>
+                
+                <div class="flex gap-8 font-sans text-[10px] text-bone/40 uppercase tracking-[0.3em]">
+                    <a href="#" class="hover:text-bone transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-bone transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-bone transition-colors">Refund Protocol</a>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center md:text-left text-[10px] text-bone/30 font-sans max-w-4xl leading-relaxed uppercase tracking-[0.1em]">
+                <strong>Legal Disclaimer:</strong> InTheCircle provides premium educational resources, frameworks, and networking opportunities. We do not guarantee financial success, specific income results, or business scaling. Entrepreneurship and business building involve significant risk. The examples, case studies, and projections provided are for educational purposes only. Always conduct your own due diligence.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- Hamburger Menu Logic ---
+        const btn = document.getElementById('hamburger-btn');
+        const menu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-link');
+        const navbar = document.getElementById('navbar');
+
+        function toggleMenu() {
+            btn.classList.toggle('menu-open');
+            if(menu.classList.contains('open')) {
+                menu.classList.remove('open');
+                document.body.style.overflow = '';
+                // Restore navbar bg if scrolled
+                if(window.scrollY > 50) {
+                    navbar.classList.add('bg-obsidian/95', 'backdrop-blur-md', 'border-b', 'border-bone/10');
+                }
+            } else {
+                menu.classList.add('open');
+                document.body.style.overflow = 'hidden';
+                // Remove navbar bg so menu covers smoothly
+                navbar.classList.remove('bg-obsidian/95', 'backdrop-blur-md', 'border-b', 'border-bone/10');
+            }
+        }
+
+        btn.addEventListener('click', toggleMenu);
+        links.forEach(link => link.addEventListener('click', toggleMenu));
+
+        // --- Navbar Scroll Effect ---
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-obsidian/95', 'backdrop-blur-md', 'border-b', 'border-bone/10', 'py-4');
+                navbar.classList.remove('py-6');
+            } else {
+                navbar.classList.remove('bg-obsidian/95', 'backdrop-blur-md', 'border-b', 'border-bone/10', 'py-4');
+                navbar.classList.add('py-6');
+            }
+        });
+
+        // --- Scroll Reveal Intersections ---
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -100px 0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Add draw animation to syllabus lines if they exist in the target
+                    const borders = entry.target.querySelectorAll('.draw-border');
+                    borders.forEach(b => b.classList.add('animate-draw-line'));
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        // Target all directional fade classes
+        document.querySelectorAll('.fade-in-section, .fade-in-left, .fade-in-right').forEach((elem) => {
+            observer.observe(elem);
+        });
+
+        // --- Editorial FAQ Accordion Logic ---
+        function toggleFaq(button) {
+            const item = button.parentElement;
+            
+            // Close other open accordions
+            document.querySelectorAll('.faq-item').forEach(otherItem => {
+                if(otherItem !== item && otherItem.classList.contains('faq-active')) {
+                    otherItem.classList.remove('faq-active');
+                }
+            });
+
+            // Toggle the clicked one
+            item.classList.toggle('faq-active');
+        }
+    </script>
+</body>
+</html>
